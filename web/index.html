@@ -6,6 +6,28 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // El motor de Flutter Web reescribe el viewport con `user-scalable=no`, que
+    // impide hacer zoom en el navegador (WCAG 1.4.4). Lo devolvemos a un valor
+    // que respeta el zoom cada vez que el motor lo cambie.
+    (function () {
+      var desired = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
+      function normalize() {
+        document.querySelectorAll('meta[name="viewport"]').forEach(function (meta) {
+          if (meta.getAttribute('content') !== desired) {
+            meta.setAttribute('content', desired);
+          }
+        });
+      }
+      new MutationObserver(normalize).observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['content'],
+      });
+      normalize();
+    })();
+  </script>
 
   <title>Beatriz Barber · Mobile Developer (Flutter & Android)</title>
   <meta name="description"
@@ -16,18 +38,30 @@
   <meta name="keywords"
     content="Beatriz Barber, Mobile Developer, Flutter, Android, Kotlin, Jetpack Compose, Riverpod, Valencia, portfolio">
 
+  <link rel="canonical" href="https://beatrizbarber.dev/">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Beatriz Barber">
+  <meta property="og:url" content="https://beatrizbarber.dev/">
   <meta property="og:title" content="Beatriz Barber · Mobile Developer (Flutter & Android)">
   <meta property="og:description"
     content="De Figma a tienda: apps Flutter y Android nativo con arquitectura limpia y flujo asistido por IA.">
   <meta property="og:locale" content="es_ES">
+  <meta property="og:image" content="https://beatrizbarber.dev/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Portada del portfolio de Beatriz Barber, Mobile Developer (Flutter & Android)">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Beatriz Barber · Mobile Developer">
   <meta name="twitter:description"
     content="Flutter & Android nativo. De Figma a tienda con arquitectura limpia.">
+  <meta name="twitter:url" content="https://beatrizbarber.dev/">
+  <meta name="twitter:image" content="https://beatrizbarber.dev/og-image.png">
+  <meta name="twitter:image:alt" content="Portada del portfolio de Beatriz Barber">
 
   <!-- iOS / PWA -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -45,11 +79,27 @@
     "name": "Beatriz Barber",
     "jobTitle": "Mobile Developer",
     "description": "Mobile Developer especializada en Flutter y Android nativo.",
+    "image": "https://beatrizbarber.dev/og-image.png",
+    "email": "mailto:beatrizbarberm@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Valencia",
       "addressCountry": "ES"
     },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Ideable"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Universitat de València"
+    },
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Mobile Developer",
+      "skills": "Flutter, Dart, Android, Kotlin, Jetpack Compose, Riverpod"
+    },
+    "knowsLanguage": ["es", "ca", "en"],
     "knowsAbout": ["Flutter", "Dart", "Android", "Kotlin", "Jetpack Compose", "Riverpod"],
     "url": "https://beatrizbarber.dev",
     "sameAs": [

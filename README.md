@@ -41,6 +41,13 @@ lib/
 assets/raw/
 ├── profile.json                  # Datos personales, stack y experiencia
 └── projects.json                 # Proyectos (fuente única de verdad)
+web/
+├── index.html                    # Metadatos, Open Graph, JSON-LD y parche de viewport
+├── robots.txt                    # Permite el rastreo y apunta al sitemap
+├── sitemap.xml                   # Rutas públicas del sitio
+└── og-image.png                  # Tarjeta 1200×630 al compartir el enlace
+tool/
+└── generate_og_image.py          # Regenera web/og-image.png
 ```
 
 ## Cómo ejecutarlo
@@ -75,6 +82,20 @@ El resultado queda en `build/web`. En producción se sirve comprimido con Brotli
 4. Marca `"featured": true` para que aparezca en la home.
 5. Si el proyecto está bajo confidencialidad, pon `"anonymized": true` y deja `links` vacío.
 
+## SEO y accesibilidad
+
+Los ficheros estáticos de `web/` se copian tal cual a `build/web` en cada build:
+
+- `robots.txt` permite el rastreo y apunta al sitemap.
+- `sitemap.xml` lista las rutas públicas: home, proyectos, cada proyecto, sobre mí y contacto.
+- `og-image.png` es la tarjeta que aparece al compartir el enlace (1200×630) y se regenera con `python3 tool/generate_og_image.py` (Pillow + la Roboto de la caché del SDK de Flutter, para que la tipografía coincida con la app).
+
+`index.html` incluye `canonical`, Open Graph, Twitter Card y datos estructurados JSON-LD (`Person`) con formación, empresa y áreas de conocimiento. También lleva un parche pequeño que devuelve al `<meta name="viewport">` la capacidad de zoom: el motor de Flutter Web lo reescribe con `user-scalable=no` y eso impide ampliar la página en el móvil (WCAG 1.4.4), aunque el HTML de origen no lo pida.
+
+Las URLs absolutas del HTML y del sitemap asumen el dominio `beatrizbarber.dev`. Si se publica antes en la URL de proyecto de GitHub Pages, hay que cambiarlas.
+
+Auditoría de Lighthouse sobre `build/web` servido en local (19/10/2026): **SEO 100**, **buenas prácticas 100**, **accesibilidad 93**. Queda `landmark-one-main` porque Flutter monta la app directamente en el `<body>`, sin un `<main>` propio; se puede revisar cuando el motor permita elegir el elemento host.
+
 ## Despliegue
 
 El workflow `.github/workflows/deploy.yml` analiza, testea y publica en GitHub Pages en cada push a `main`. Incluye un paso que copia `index.html` a `404.html`, porque GitHub Pages no reescribe las rutas de una SPA: sin él, abrir `https://<sitio>/proyectos` directamente daría 404 y el enlace no funcionaría fuera de la navegación interna.
@@ -106,7 +127,7 @@ Alternativa: Cloudflare Pages o Vercel conectados al repo (mejor caché y compre
 - [ ] Añadir versión en inglés (`/en`).
 - [ ] Publicar el CV en PDF en `/cv`.
 - [ ] Añadir analítica sin cookies (Plausible/Umami).
-- [ ] Revisar Lighthouse (rendimiento, accesibilidad, SEO).
+- [ ] Medir el rendimiento de carga y valorar el renderer Wasm (`--wasm`).
 
 ## Licencia
 
