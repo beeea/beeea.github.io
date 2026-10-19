@@ -23,6 +23,11 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          # Version fija = misma que en local. Con `channel: stable` a secas el
+          # runner instala el último stable (3.47.7), donde ThemeData.cardTheme
+          # ya espera CardThemeData y el análisis falla. Igual que en
+          # media_metadata_kit y estanteria.
+          flutter-version: 3.27.2
           cache: true
 
       - run: flutter pub get
