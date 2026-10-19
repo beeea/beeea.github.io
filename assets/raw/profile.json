@@ -1,0 +1,49 @@
+{
+  "name": "Beatriz Barber",
+  "role": "Mobile Developer · Flutter & Android nativo",
+  "tagline": "De Figma a tienda: producto multiplataforma con arquitectura limpia, tests y un flujo de trabajo asistido por IA.",
+  "location": "Valencia, España",
+  "availability": "Abierta a oportunidades mid/senior · Remoto o híbrido",
+  "email": "beatrizbarberm@gmail.com",
+  "github": "https://github.com/beeea",
+  "linkedin": "https://www.linkedin.com/in/beatriz-barber-94a013228",
+  "about": [
+    "Ingeniera Multimedia por la Universitat de València, con Matrícula de Honor en Aplicaciones para Dispositivos Móviles.",
+    "Trabajo con Flutter para Android, iOS y Web, y bajo al Android nativo en Kotlin cuando el producto lo necesita. Me obsesiona el detalle: que la interfaz quede exactamente como el diseño y que el código siga siendo mantenible seis meses después.",
+    "Fuera del código: clarinete, animación y diseño."
+  ],
+  "stack": [
+    "Flutter",
+    "Dart",
+    "Kotlin",
+    "Jetpack Compose",
+    "Riverpod",
+    "BLoC/Cubit",
+    "Clean Architecture",
+    "Firebase",
+    "Fastlane",
+    "GitHub Actions",
+    "Figma",
+    "MCP"
+  ],
+  "experience": [
+    {
+      "company": "Ideable",
+      "role": "Mobile Developer",
+      "period": "2024 – presente",
+      "description": "Apps Flutter para Android, iOS y Web, y módulos nativos Android en Kotlin. Maquetación pixel-perfect, estado con Riverpod y flujo design-to-code asistido por IA."
+    },
+    {
+      "company": "Capgemini",
+      "role": "Software Engineer",
+      "period": "2022 – 2024",
+      "description": "Desarrollo y mantenimiento de aplicaciones web críticas para el sector bancario en entornos Agile/Scrum."
+    },
+    {
+      "company": "Universitat de València",
+      "role": "Grado en Ingeniería Multimedia",
+      "period": "2018 – 2022",
+      "description": "Matrícula de Honor en Aplicaciones para Dispositivos Móviles. Perfil multidisciplinar: software, diseño de interfaces y medios audiovisuales."
+    }
+  ]
+}

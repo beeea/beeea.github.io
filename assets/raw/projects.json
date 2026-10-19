@@ -1,0 +1,166 @@
+{
+  "projects": [
+    {
+      "slug": "app-en-produccion-ideable",
+      "name": "App en producción · Ideable",
+      "type": "Empresa",
+      "company": "Ideable",
+      "year": "2024 – hoy",
+      "platforms": ["Android", "iOS", "Web"],
+      "featured": true,
+      "anonymized": true,
+      "summary": "Maquetación pixel-perfect y evolución de una aplicación en producción para Android, iOS y Web.",
+      "description": "Formo parte del equipo que construye y mantiene una aplicación Flutter en producción. Mi foco principal es la capa de presentación: trasladar los diseños de Figma a pantallas pixel-perfect, mantener la consistencia visual entre plataformas y evolucionar la app sin romper lo que ya funciona. También mantengo módulos nativos Android en Kotlin y participo en tests y code reviews.",
+      "highlights": [
+        "Maquetación completa y pixel-perfect desde Figma, con fidelidad visual en Android, iOS y Web.",
+        "Gestión de estado con Riverpod, con experiencia previa en BLoC/Cubit.",
+        "Mantenimiento de módulos nativos Android en Kotlin.",
+        "Flujo design-to-code apoyado en Model Context Protocol (MCP) para reducir el tiempo de maquetación.",
+        "Tests y code reviews asistidos por IA para detectar bugs y deuda técnica antes."
+      ],
+      "stack": ["Flutter", "Dart", "Riverpod", "Kotlin", "Clean Architecture", "Figma", "MCP", "Firebase"],
+      "links": []
+    },
+    {
+      "slug": "media-metadata-kit",
+      "name": "media_metadata_kit",
+      "type": "Open source",
+      "company": "Proyecto propio",
+      "year": "2026",
+      "platforms": ["Android"],
+      "featured": true,
+      "anonymized": false,
+      "summary": "Plugin Flutter que lee metadatos, portadas incrustadas y fotogramas de vídeo con el MediaMetadataRetriever nativo de Android.",
+      "description": "Plugin publicado para Flutter que expone una API tipada para leer metadatos de audio y vídeo, extraer la portada incrustada y decodificar fotogramas en una posición concreta. Todo el trabajo pesado ocurre en Kotlin sobre MediaMetadataRetriever, sin FFmpeg ni librerías nativas extra, así que no añade peso al APK. Es la evolución de un proyecto académico de vídeo nativo convertido en paquete reutilizable, con interfaz de plataforma federada, errores tipados, tests y CI.",
+      "highlights": [
+        "Canal nativo Android en Kotlin sobre MediaMetadataRetriever, con corrutinas y respuesta en el hilo principal.",
+        "Escalado durante el decodificado (getScaledFrameAtTime, API 27+) y reutilización de un solo file handle para varios fotogramas.",
+        "Reciclado explícito de bitmaps y release() del retriever incluso en error: las fugas nativas no las recoge el GC de Dart.",
+        "Diseño de API: MediaSource sellado (path o content:// URI), PlatformInterface federado y errores tipados con códigos.",
+        "30 tests Dart con canal simulado, tests JVM de los helpers Kotlin y análisis estático sin issues en CI."
+      ],
+      "stack": ["Flutter", "Dart", "Kotlin", "MethodChannel", "Coroutines", "MediaMetadataRetriever", "GitHub Actions"],
+      "links": [
+        { "label": "Ver código", "url": "https://github.com/beeea/media_metadata_kit" }
+      ]
+    },
+    {
+      "slug": "estanteria",
+      "name": "Estantería",
+      "type": "Open source",
+      "company": "Proyecto propio",
+      "year": "2026",
+      "platforms": ["Android", "iOS"],
+      "featured": true,
+      "anonymized": false,
+      "summary": "App Flutter offline-first para llevar un registro de lecturas, con la base de datos local como única fuente de verdad.",
+      "description": "Aplicación móvil para registrar los libros que lees: progreso, estado, valoración, notas y etiquetas, con estadísticas calculadas en el propio dispositivo. La base de datos SQLite local es la única fuente de verdad, así que funciona sin conexión, sin cuentas y sin servicios externos. Está construida con arquitectura limpia por features, Drift para persistencia reactiva y Riverpod para el estado, y cubre 173 tests entre dominio, datos, UI y navegación.",
+      "highlights": [
+        "Arquitectura limpia por features: dominio puro, datos con Drift y presentación con Riverpod; la UI nunca toca la base de datos.",
+        "Persistencia reactiva con Drift (SQLite): consultas que emiten streams y reconstruyen la UI al cambiar los datos, con agregados SQL para las estadísticas.",
+        "Reglas de dominio reales: el progreso cierra el libro al llegar a la última página, sella fechas y reabre el libro si retrocedes.",
+        "Búsqueda insensible a acentos y mayúsculas, filtros por estado y cuatro criterios de ordenación.",
+        "Estadísticas con gráfico propio en CustomPainter, sin dependencias de terceros, con etiqueta semántica para lectores de pantalla.",
+        "173 tests: reglas de dominio, base de datos en memoria, widgets con repositorio falso y navegación con go_router.",
+        "Accesibilidad cuidada: objetivos táctiles de 48 dp, contraste AA verificado en tests y compatibilidad con texto ampliado al 200 %."
+      ],
+      "stack": ["Flutter", "Dart", "Riverpod", "Drift", "SQLite", "go_router", "Clean Architecture", "Material 3", "GitHub Actions"],
+      "links": [
+        { "label": "Ver código", "url": "https://github.com/beeea/estanteria" }
+      ]
+    },
+    {
+      "slug": "covid19-valencia",
+      "name": "Covid19 Valencia",
+      "type": "Académico",
+      "company": "Universitat de València",
+      "year": "2023",
+      "platforms": ["Android"],
+      "featured": false,
+      "anonymized": false,
+      "summary": "App Android para consultar la incidencia de COVID-19 por municipio y registrar diagnósticos.",
+      "description": "Aplicación Android desarrollada en Java para consultar la incidencia de COVID-19 en los municipios de la Comunitat Valenciana. Incluye búsqueda de municipios, detalle con datos de incidencia, registro de nuevos casos con selección de síntomas y persistencia local con SQLite.",
+      "highlights": [
+        "Listado y búsqueda de municipios con RecyclerView y Adapters personalizados.",
+        "Pantalla de detalle con datos de incidencia y evolución.",
+        "Registro de diagnósticos con selección de síntomas.",
+        "Persistencia local con SQLite y controlador propio.",
+        "UI en Material Design con menús, iconografía y formularios."
+      ],
+      "stack": ["Java", "Android SDK", "SQLite", "RecyclerView", "Material Design", "ConstraintLayout"],
+      "links": [
+        { "label": "Ver código", "url": "https://github.com/beeea/Covid19" }
+      ]
+    },
+    {
+      "slug": "simple-video-view",
+      "name": "SimpleVideoView",
+      "type": "Académico",
+      "company": "Universitat de València",
+      "year": "2023",
+      "platforms": ["Android"],
+      "featured": false,
+      "anonymized": false,
+      "summary": "Reproducción de vídeo en Android con VideoView, controles nativos y manejo del ciclo de vida.",
+      "description": "Ejemplo completo de reproducción de vídeo en Android usando VideoView y MediaController. El proyecto cuida los estados de buffering, la pausa al salir de primer plano y la restauración de la posición de reproducción.",
+      "highlights": [
+        "Reproducción desde URL o desde un recurso local en res/raw.",
+        "Controles nativos con MediaController: play, pausa y búsqueda.",
+        "Indicador de buffering mientras carga el vídeo.",
+        "Ciclo de vida controlado: pausa en onPause y reanudación en onStart.",
+        "Posición de reproducción guardada en onSaveInstanceState.",
+        "Este proyecto evolucionó después al plugin media_metadata_kit (2026)."
+      ],
+      "stack": ["Java", "Android SDK", "VideoView", "MediaController", "ConstraintLayout"],
+      "links": [
+        { "label": "Ver código", "url": "https://github.com/beeea/SimpleVideoView" }
+      ]
+    },
+    {
+      "slug": "todo-app",
+      "name": "ToDoApp",
+      "type": "Académico",
+      "company": "Universitat de València",
+      "year": "2023",
+      "platforms": ["Android"],
+      "featured": false,
+      "anonymized": false,
+      "summary": "App de tareas con Jetpack Compose, ViewModel, LiveData y Hilt.",
+      "description": "Aplicación de tareas construida con Jetpack Compose para practicar UI declarativa, gestión de estado e inyección de dependencias. Permite añadir, completar y eliminar tareas desde una interfaz reactiva.",
+      "highlights": [
+        "Lista de tareas con LazyColumn y estado reactivo.",
+        "Diálogo para añadir tareas y checkbox para completarlas.",
+        "Borrado con pulsación larga.",
+        "ViewModel con mutableStateListOf y LiveData.",
+        "Inyección de dependencias con Hilt."
+      ],
+      "stack": ["Kotlin", "Jetpack Compose", "ViewModel", "LiveData", "Hilt", "Material"],
+      "links": [
+        { "label": "Ver código", "url": "https://github.com/beeea/ToDoApp" }
+      ]
+    },
+    {
+      "slug": "imc-calculator",
+      "name": "IMC Calculator",
+      "type": "Académico",
+      "company": "Universitat de València",
+      "year": "2023",
+      "platforms": ["Android"],
+      "featured": false,
+      "anonymized": false,
+      "summary": "Calculadora de índice de masa corporal con Kotlin y XML Views.",
+      "description": "Calculadora de IMC para Android con selección de sexo, altura mediante RangeSlider, peso con botones de suma y resta y una pantalla de resultado con categorías y colores.",
+      "highlights": [
+        "Selección de sexo con tarjetas y cambio de color.",
+        "Altura con RangeSlider y peso con FloatingActionButton.",
+        "Cálculo del IMC y navegación a pantalla de resultado.",
+        "Clasificación por categorías con color y descripción.",
+        "UI en Material Design con ConstraintLayout."
+      ],
+      "stack": ["Kotlin", "XML Views", "Material Components", "ConstraintLayout", "Gradle Kotlin DSL"],
+      "links": [
+        { "label": "Ver código", "url": "https://github.com/beeea/IMC_Calculator" }
+      ]
+    }
+  ]
+}
