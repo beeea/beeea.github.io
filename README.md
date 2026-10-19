@@ -104,6 +104,8 @@ El sitio se publica como **sitio de usuario**: el repositorio de GitHub se llama
 
 Si alguna vez se publica como página de proyecto (`https://beeea.github.io/beatriz-portfolio`), habría que definir la variable `BASE_HREF` como `/beatriz-portfolio/` en Settings → Secrets and variables → Actions → Variables, y actualizar las URLs absolutas del HTML y del sitemap.
 
+Para probar los enlaces profundos en local hace falta imitar ese comportamiento, porque un servidor de ficheros normal devuelve su propio 404: `tool/spa_server.py` sirve `build/web` y responde `index.html` en cualquier ruta desconocida. Con `python3 tool/spa_server.py` el sitio queda en `http://127.0.0.1:8131` y `/proyectos/estanteria` funciona igual que en producción.
+
 Si algún día hay dominio propio, basta con añadirlo en Settings → Pages → Custom domain, crear el registro DNS que indique GitHub y cambiar esas mismas URLs absolutas. Sin dominio propio no hace falta nada de esto.
 
 Alternativa: Cloudflare Pages o Vercel conectados al repo (mejor caché y compresión automática, y admiten repos privados).

@@ -11,7 +11,8 @@ import '../shared/widgets/not_found_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: '/',
+    // Sin initialLocation: go_router parte de la URL del navegador. Fijarla en
+    // '/' hacía que /proyectos/estanteria abriera la portada sin avisar.
     routes: [
       ShellRoute(
         builder: (context, state, child) {
