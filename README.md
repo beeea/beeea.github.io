@@ -92,7 +92,7 @@ Los ficheros estáticos de `web/` se copian tal cual a `build/web` en cada build
 
 `index.html` incluye `canonical`, Open Graph, Twitter Card y datos estructurados JSON-LD (`Person`) con formación, empresa y áreas de conocimiento. También lleva un parche pequeño que devuelve al `<meta name="viewport">` la capacidad de zoom: el motor de Flutter Web lo reescribe con `user-scalable=no` y eso impide ampliar la página en el móvil (WCAG 1.4.4), aunque el HTML de origen no lo pida.
 
-Las URLs absolutas del HTML y del sitemap asumen el dominio `beatrizbarber.dev`. Si se publica antes en la URL de proyecto de GitHub Pages, hay que cambiarlas.
+Las URLs absolutas del HTML (`canonical`, Open Graph, Twitter Card, JSON-LD) y las del sitemap apuntan a `https://beeea.github.io`, que es la dirección final del portfolio.
 
 Auditoría de Lighthouse sobre `build/web` servido en local (19/10/2026): **SEO 100**, **buenas prácticas 100**, **accesibilidad 93**. Queda `landmark-one-main` porque Flutter monta la app directamente en el `<body>`, sin un `<main>` propio; se puede revisar cuando el motor permita elegir el elemento host.
 
@@ -100,18 +100,13 @@ Auditoría de Lighthouse sobre `build/web` servido en local (19/10/2026): **SEO 
 
 El workflow `.github/workflows/deploy.yml` analiza, testea y publica en GitHub Pages en cada push a `main`. Incluye un paso que copia `index.html` a `404.html`, porque GitHub Pages no reescribe las rutas de una SPA: sin él, abrir `https://<sitio>/proyectos` directamente daría 404 y el enlace no funcionaría fuera de la navegación interna.
 
-El `--base-href` se toma de la variable de repositorio `BASE_HREF` (por defecto `/`):
+El sitio se publica como **sitio de usuario**: el repositorio de GitHub se llama `beeea.github.io`, así que la URL final es `https://beeea.github.io/` (raíz, sin subruta) y el `--base-href` se queda en `/` (por defecto). Para activarlo la primera vez: Settings → Pages → Source → «GitHub Actions».
 
-- Dominio propio (`https://beatrizbarber.dev`) o repo `beeea.github.io` → se deja `/`.
-- Página de proyecto (`https://beeea.github.io/beatriz-portfolio`) → definir `BASE_HREF` como `/beatriz-portfolio/` en Settings → Secrets and variables → Actions → Variables.
+Si alguna vez se publica como página de proyecto (`https://beeea.github.io/beatriz-portfolio`), habría que definir la variable `BASE_HREF` como `/beatriz-portfolio/` en Settings → Secrets and variables → Actions → Variables, y actualizar las URLs absolutas del HTML y del sitemap.
 
-Para un dominio propio:
+Si algún día hay dominio propio, basta con añadirlo en Settings → Pages → Custom domain, crear el registro DNS que indique GitHub y cambiar esas mismas URLs absolutas. Sin dominio propio no hace falta nada de esto.
 
-1. Compra `beatrizbarber.dev`.
-2. Añádelo en GitHub → repo → Settings → Pages → Custom domain.
-3. Crea el registro DNS que indique GitHub.
-
-Alternativa: Cloudflare Pages o Vercel conectados al repo (mejor caché y compresión automática).
+Alternativa: Cloudflare Pages o Vercel conectados al repo (mejor caché y compresión automática, y admiten repos privados).
 
 ## Decisiones técnicas
 

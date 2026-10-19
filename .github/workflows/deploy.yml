@@ -29,7 +29,7 @@ jobs:
       - run: flutter analyze
       - run: flutter test
       # `vars.BASE_HREF` permite desplegar tanto en un dominio raíz
-      # (https://beatrizbarber.dev → "/") como en una página de proyecto
+      # (https://beeea.github.io → "/") como en una página de proyecto
       # (https://beeea.github.io/beatriz-portfolio → "/beatriz-portfolio/").
       - run: flutter build web --release --tree-shake-icons --base-href "${{ vars.BASE_HREF || '/' }}"
 

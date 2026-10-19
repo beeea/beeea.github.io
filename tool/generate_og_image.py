@@ -32,7 +32,7 @@ BODY_LINES = [
     "con arquitectura limpia, tests y flujo asistido por IA.",
 ]
 CHIPS = ["media_metadata_kit", "Estantería", "173 tests", "Kotlin nativo"]
-FOOTER = "beatrizbarber.dev"
+FOOTER = "beeea.github.io"
 
 
 def font(name: str, size: int) -> ImageFont.FreeTypeFont:

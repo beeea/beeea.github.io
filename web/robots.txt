@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://beatrizbarber.dev/sitemap.xml
+Sitemap: https://beeea.github.io/sitemap.xml
