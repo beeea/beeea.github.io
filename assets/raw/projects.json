@@ -24,14 +24,14 @@
     {
       "slug": "media-metadata-kit",
       "name": "media_metadata_kit",
-      "type": "Open source",
+      "type": "Personal",
       "company": "Proyecto propio",
       "year": "2026",
       "platforms": ["Android"],
       "featured": true,
       "anonymized": false,
       "summary": "Plugin Flutter que lee metadatos, portadas incrustadas y fotogramas de vídeo con el MediaMetadataRetriever nativo de Android.",
-      "description": "Plugin publicado para Flutter que expone una API tipada para leer metadatos de audio y vídeo, extraer la portada incrustada y decodificar fotogramas en una posición concreta. Todo el trabajo pesado ocurre en Kotlin sobre MediaMetadataRetriever, sin FFmpeg ni librerías nativas extra, así que no añade peso al APK. Es la evolución de un proyecto académico de vídeo nativo convertido en paquete reutilizable, con interfaz de plataforma federada, errores tipados, tests y CI.",
+      "description": "Plugin de Flutter que expone una API tipada para leer metadatos de audio y vídeo, extraer la portada incrustada y decodificar fotogramas en una posición concreta. Todo el trabajo pesado ocurre en Kotlin sobre MediaMetadataRetriever, sin FFmpeg ni librerías nativas extra, así que no añade peso al APK. Es la evolución de un proyecto académico de vídeo nativo convertido en paquete reutilizable, con interfaz de plataforma federada, errores tipados, tests y CI. El repositorio es privado por ahora; comparto el código durante el proceso de selección.",
       "highlights": [
         "Canal nativo Android en Kotlin sobre MediaMetadataRetriever, con corrutinas y respuesta en el hilo principal.",
         "Escalado durante el decodificado (getScaledFrameAtTime, API 27+) y reutilización de un solo file handle para varios fotogramas.",
@@ -40,21 +40,19 @@
         "30 tests Dart con canal simulado, tests JVM de los helpers Kotlin y análisis estático sin issues en CI."
       ],
       "stack": ["Flutter", "Dart", "Kotlin", "MethodChannel", "Coroutines", "MediaMetadataRetriever", "GitHub Actions"],
-      "links": [
-        { "label": "Ver código", "url": "https://github.com/beeea/media_metadata_kit" }
-      ]
+      "links": []
     },
     {
       "slug": "estanteria",
       "name": "Estantería",
-      "type": "Open source",
+      "type": "Personal",
       "company": "Proyecto propio",
       "year": "2026",
       "platforms": ["Android", "iOS"],
       "featured": true,
       "anonymized": false,
       "summary": "App Flutter offline-first para llevar un registro de lecturas, con la base de datos local como única fuente de verdad.",
-      "description": "Aplicación móvil para registrar los libros que lees: progreso, estado, valoración, notas y etiquetas, con estadísticas calculadas en el propio dispositivo. La base de datos SQLite local es la única fuente de verdad, así que funciona sin conexión, sin cuentas y sin servicios externos. Está construida con arquitectura limpia por features, Drift para persistencia reactiva y Riverpod para el estado, y cubre 173 tests entre dominio, datos, UI y navegación.",
+      "description": "Aplicación móvil para registrar los libros que lees: progreso, estado, valoración, notas y etiquetas, con estadísticas calculadas en el propio dispositivo. La base de datos SQLite local es la única fuente de verdad, así que funciona sin conexión, sin cuentas y sin servicios externos. Está construida con arquitectura limpia por features, Drift para persistencia reactiva y Riverpod para el estado, y cubre 173 tests entre dominio, datos, UI y navegación. El repositorio es privado por ahora; comparto el código durante el proceso de selección.",
       "highlights": [
         "Arquitectura limpia por features: dominio puro, datos con Drift y presentación con Riverpod; la UI nunca toca la base de datos.",
         "Persistencia reactiva con Drift (SQLite): consultas que emiten streams y reconstruyen la UI al cambiar los datos, con agregados SQL para las estadísticas.",
@@ -65,9 +63,7 @@
         "Accesibilidad cuidada: objetivos táctiles de 48 dp, contraste AA verificado en tests y compatibilidad con texto ampliado al 200 %."
       ],
       "stack": ["Flutter", "Dart", "Riverpod", "Drift", "SQLite", "go_router", "Clean Architecture", "Material 3", "GitHub Actions"],
-      "links": [
-        { "label": "Ver código", "url": "https://github.com/beeea/estanteria" }
-      ]
+      "links": []
     },
     {
       "slug": "covid19-valencia",
