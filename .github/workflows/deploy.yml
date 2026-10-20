@@ -62,3 +62,30 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Las URLs de abajo son las que usan los CVs. Si alguna deja de responder
+      # 200, el deploy falla aquí en vez de descubrirlo en una candidatura.
+      # Pages tarda unos segundos en propagar, de ahí los reintentos.
+      - name: Comprobar las rutas públicas
+        run: |
+          check() {
+            local url="$1" expected="$2"
+            for intento in 1 2 3 4 5; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+              if [ "$code" = "$expected" ]; then
+                echo "$code $url"
+                return 0
+              fi
+              sleep 5
+            done
+            echo "::error::$url devuelve $code y se esperaba $expected"
+            return 1
+          }
+
+          check "https://beeea.github.io/" 200
+          check "https://beeea.github.io/proyectos/" 200
+          check "https://beeea.github.io/proyectos/estanteria/" 200
+          check "https://beeea.github.io/proyectos/media-metadata-kit/" 200
+          check "https://beeea.github.io/sobre-mi/" 200
+          check "https://beeea.github.io/contacto/" 200
+          check "https://beeea.github.io/no-existe/" 404
