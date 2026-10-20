@@ -117,7 +117,7 @@ Auditoría de Lighthouse sobre `build/web` servido en local (19/10/2026): **SEO 
 
 ## Despliegue
 
-El workflow `.github/workflows/deploy.yml` analiza, testea y publica en GitHub Pages en cada push a `main`. Incluye un paso que copia `index.html` a `404.html`, porque GitHub Pages no reescribe las rutas de una SPA: sin él, abrir `https://<sitio>/proyectos` directamente daría 404 y el enlace no funcionaría fuera de la navegación interna.
+El workflow `.github/workflows/deploy.yml` analiza, testea y publica en GitHub Pages en cada push a `main`. Antes de subir el artefacto ejecuta `tool/generate_routes.py`, que genera un `index.html` por ruta conocida (con su canonical y sus metadatos) y un `404.html` para el resto: GitHub Pages no reescribe rutas de SPA, así que sin ese paso abrir `https://<sitio>/proyectos/estanteria/` devolvería 404 aunque la app sepa pintarla.
 
 El sitio se publica como **sitio de usuario**: el repositorio de GitHub se llama `beeea.github.io`, así que la URL final es `https://beeea.github.io/` (raíz, sin subruta) y el `--base-href` se queda en `/` (por defecto). Para activarlo la primera vez: Settings → Pages → Source → «GitHub Actions».
 
@@ -138,7 +138,7 @@ Alternativa: Cloudflare Pages o Vercel conectados al repo (mejor caché y compre
 
 ## Roadmap
 
-- [ ] Añadir capturas y GIFs reales de los proyectos.
+- [x] Añadir capturas y GIFs reales de los proyectos (uno por ficha).
 - [ ] Migrar el formulario de contacto a Web3Forms/Formspree.
 - [ ] Añadir versión en inglés (`/en`).
 - [ ] Publicar el CV en PDF en `/cv`.
