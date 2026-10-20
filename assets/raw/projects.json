@@ -31,7 +31,7 @@
       "featured": true,
       "anonymized": false,
       "summary": "Plugin Flutter que lee metadatos, portadas incrustadas y fotogramas de vídeo con el MediaMetadataRetriever nativo de Android.",
-      "description": "Plugin de Flutter que expone una API tipada para leer metadatos de audio y vídeo, extraer la portada incrustada y decodificar fotogramas en una posición concreta. Todo el trabajo pesado ocurre en Kotlin sobre MediaMetadataRetriever, sin FFmpeg ni librerías nativas extra, así que no añade peso al APK. Es la evolución de un proyecto académico de vídeo nativo convertido en paquete reutilizable, con interfaz de plataforma federada, errores tipados, tests y CI. El repositorio es privado por ahora; comparto el código durante el proceso de selección.",
+      "description": "Plugin de Flutter que expone una API tipada para leer metadatos de audio y vídeo, extraer la portada incrustada y decodificar fotogramas en una posición concreta. Todo el trabajo pesado ocurre en Kotlin sobre MediaMetadataRetriever, sin FFmpeg ni librerías nativas de terceros: el módulo Kotlin que añade es pequeño. Es la evolución de un proyecto académico de vídeo nativo convertido en paquete reutilizable, con interfaz de plataforma federada, errores tipados, tests y CI. El repositorio es privado por ahora; comparto el código durante el proceso de selección.",
       "highlights": [
         "Canal nativo Android en Kotlin sobre MediaMetadataRetriever, con corrutinas y respuesta en el hilo principal.",
         "Escalado durante el decodificado (getScaledFrameAtTime, API 27+) y reutilización de un solo file handle para varios fotogramas.",
