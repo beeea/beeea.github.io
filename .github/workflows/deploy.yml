@@ -33,6 +33,9 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
+      # El generador decide qué rutas existen y con qué metadatos: si se rompe,
+      # los enlaces de los CVs vuelven a dar 404. Tiene sus propios tests.
+      - run: python3 -m unittest discover -s tool -p "test_*.py"
       # `vars.BASE_HREF` permite desplegar tanto en un dominio raíz
       # (https://beeea.github.io → "/") como en una página de proyecto
       # (https://beeea.github.io/beatriz-portfolio → "/beatriz-portfolio/").
