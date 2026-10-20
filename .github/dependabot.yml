@@ -1,0 +1,15 @@
+version: 2
+
+# Solo las acciones de GitHub por ahora: son actualizaciones seguras y evitan
+# los avisos de runners obsoletos. Las dependencias de pub y Gradle se activarán
+# cuando el SDK esté actualizado; hoy el CI fija Flutter 3.27.2 y un salto
+# automático de paquete lo rompería.
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "ci"
