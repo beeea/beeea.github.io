@@ -4,7 +4,7 @@ Portfolio personal de **Beatriz Barber**, Mobile Developer (Flutter & Android na
 
 Construido con **Flutter Web** para demostrar el stack con el que trabajo a diario. Todo el contenido vive en JSON, así que añadir o editar un proyecto no requiere tocar Dart.
 
-🔗 Sitio en producción: _(pendiente de publicar)_
+🔗 Sitio en producción: [beeea.github.io](https://beeea.github.io)
 
 ---
 
@@ -47,7 +47,9 @@ web/
 ├── sitemap.xml                   # Rutas públicas del sitio
 └── og-image.png                  # Tarjeta 1200×630 al compartir el enlace
 tool/
-└── generate_og_image.py          # Regenera web/og-image.png
+├── generate_og_image.py          # Regenera web/og-image.png
+├── generate_routes.py            # index.html por ruta + metadatos + 404
+└── test_generate_routes.py       # Tests del generador
 ```
 
 ## Cómo ejecutarlo
@@ -62,9 +64,14 @@ flutter run -d chrome
 ```bash
 flutter analyze
 flutter test
+python3 -m unittest discover -s tool -p "test_*.py"
 ```
 
-Los tests comprueban que `profile.json` y `projects.json` se parsean, que los slugs son únicos y que ningún proyecto anonimizado expone enlaces de cliente.
+Los tests de Flutter comprueban que `profile.json` y `projects.json` se parsean,
+que los slugs son únicos y que ningún proyecto anonimizado expone enlaces de
+cliente. Los del generador cubren el recorte de descripciones, el escape de
+HTML, el canonical de cada ruta, el `noindex` del 404 y que el sitemap no
+anuncie rutas sin página.
 
 ## Build para web
 
@@ -72,7 +79,14 @@ Los tests comprueban que `profile.json` y `projects.json` se parsean, que los sl
 flutter build web --release --tree-shake-icons
 ```
 
-El resultado queda en `build/web`. En producción se sirve comprimido con Brotli desde el hosting.
+El resultado queda en `build/web`. Después hay que generar las rutas:
+
+```bash
+python3 tool/generate_routes.py
+```
+
+En producción lo hace el workflow; en local solo si quieres probar una URL
+profunda (`/proyectos/estanteria/`) con un servidor estático.
 
 ## Editar contenido
 
@@ -89,6 +103,11 @@ Los ficheros estáticos de `web/` se copian tal cual a `build/web` en cada build
 - `robots.txt` permite el rastreo y apunta al sitemap.
 - `sitemap.xml` lista las rutas públicas: home, proyectos, cada proyecto, sobre mí y contacto.
 - `og-image.png` es la tarjeta que aparece al compartir el enlace (1200×630) y se regenera con `python3 tool/generate_og_image.py` (Pillow + la Roboto de la caché del SDK de Flutter, para que la tipografía coincida con la app).
+
+Cada ruta recibe su propio `index.html` con `canonical`, `title`, `description`
+y etiquetas sociales. Sin eso, GitHub Pages devolvía 404 en `/proyectos/...` y
+todas las fichas compartían el canonical de la portada, que los buscadores leen
+como contenido duplicado. El `404.html` se marca `noindex`.
 
 `index.html` incluye `canonical`, Open Graph, Twitter Card y datos estructurados JSON-LD (`Person`) con formación, empresa y áreas de conocimiento. También lleva un parche pequeño que devuelve al `<meta name="viewport">` la capacidad de zoom: el motor de Flutter Web lo reescribe con `user-scalable=no` y eso impide ampliar la página en el móvil (WCAG 1.4.4), aunque el HTML de origen no lo pida.
 
