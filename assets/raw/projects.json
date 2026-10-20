@@ -40,7 +40,11 @@
         "30 tests Dart con canal simulado, tests JVM de los helpers Kotlin y análisis estático sin issues en CI."
       ],
       "stack": ["Flutter", "Dart", "Kotlin", "MethodChannel", "Coroutines", "MediaMetadataRetriever", "GitHub Actions"],
-      "links": []
+            "media": {
+        "asset": "assets/media/media-metadata-kit.gif",
+        "caption": "El ejemplo leyendo un MP4: metadatos, un fotograma en el segundo 1 y tres fotogramas."
+      },
+"links": []
     },
     {
       "slug": "estanteria",
@@ -63,7 +67,11 @@
         "Accesibilidad cuidada: objetivos táctiles de 48 dp, contraste AA verificado en tests y compatibilidad con texto ampliado al 200 %."
       ],
       "stack": ["Flutter", "Dart", "Riverpod", "Drift", "SQLite", "go_router", "Clean Architecture", "Material 3", "GitHub Actions"],
-      "links": []
+            "media": {
+        "asset": "assets/media/estanteria.gif",
+        "caption": "La app en un emulador Android 15: biblioteca, detalle con el progreso de lectura y estadísticas."
+      },
+"links": []
     },
     {
       "slug": "covid19-valencia",

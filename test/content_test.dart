@@ -34,6 +34,12 @@ void main() {
       expect(project.name, isNotEmpty);
       expect(project.summary, isNotEmpty);
       expect(project.stack, isNotEmpty);
+      if (project.media != null) {
+        // Un asset que no existe rompe la ficha solo al visitarla: mejor
+        // detectarlo aquí.
+        await expectLater(rootBundle.load(project.media!.asset), completes);
+        expect(project.media!.caption, isNotEmpty);
+      }
     }
   });
 

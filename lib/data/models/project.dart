@@ -13,6 +13,7 @@ class Project {
     required this.featured,
     required this.anonymized,
     required this.links,
+    this.media,
   });
 
   final String slug;
@@ -33,6 +34,9 @@ class Project {
   final bool anonymized;
   final List<ProjectLink> links;
 
+  /// Grabación o captura del proyecto, si existe.
+  final ProjectMedia? media;
+
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
       slug: json['slug'] as String? ?? '',
@@ -50,6 +54,24 @@ class Project {
       links: (json['links'] as List<dynamic>? ?? const [])
           .map((item) => ProjectLink.fromJson(item as Map<String, dynamic>))
           .toList(),
+      media: json['media'] == null
+          ? null
+          : ProjectMedia.fromJson(json['media'] as Map<String, dynamic>),
+    );
+  }
+}
+
+/// Imagen o GIF que acompaña a la ficha del proyecto.
+class ProjectMedia {
+  const ProjectMedia({required this.asset, required this.caption});
+
+  final String asset;
+  final String caption;
+
+  factory ProjectMedia.fromJson(Map<String, dynamic> json) {
+    return ProjectMedia(
+      asset: json['asset'] as String? ?? '',
+      caption: json['caption'] as String? ?? '',
     );
   }
 }

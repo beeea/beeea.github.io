@@ -114,6 +114,36 @@ class _ProjectDetail extends StatelessWidget {
           ),
         ],
         const SizedBox(height: 40),
+        if (project.media != null) ...[
+          Center(
+            child: Column(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 300),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: theme.colorScheme.outlineVariant),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Image.asset(
+                    project.media!.asset,
+                    fit: BoxFit.contain,
+                    semanticLabel: project.media!.caption,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  project.media!.caption,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+        ],
         Text(
           project.description,
           style: theme.textTheme.bodyLarge?.copyWith(height: 1.7),
