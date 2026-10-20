@@ -141,7 +141,7 @@ Alternativa: Cloudflare Pages o Vercel conectados al repo (mejor caché y compre
 - [x] Añadir capturas y GIFs reales de los proyectos (uno por ficha).
 - [ ] Migrar el formulario de contacto a Web3Forms/Formspree.
 - [ ] Añadir versión en inglés (`/en`).
-- [ ] Publicar el CV en PDF en `/cv`.
+- [x] Publicar el CV en PDF en `/cv.pdf` (versión sin teléfono) y enlazarlo en la portada.
 - [ ] Añadir analítica sin cookies (Plausible/Umami).
 - [ ] Medir el rendimiento de carga y valorar el renderer Wasm (`--wasm`).
 

@@ -8,6 +8,7 @@ class Profile {
     required this.email,
     required this.github,
     required this.linkedin,
+    required this.cv,
     required this.about,
     required this.stack,
     required this.experience,
@@ -21,6 +22,9 @@ class Profile {
   final String email;
   final String github;
   final String linkedin;
+
+  /// PDF público del CV, sin teléfono. Vacío si todavía no está publicado.
+  final String cv;
   final List<String> about;
   final List<String> stack;
   final List<Experience> experience;
@@ -35,6 +39,7 @@ class Profile {
       email: json['email'] as String? ?? '',
       github: json['github'] as String? ?? '',
       linkedin: json['linkedin'] as String? ?? '',
+      cv: json['cv'] as String? ?? '',
       about: _stringList(json['about']),
       stack: _stringList(json['stack']),
       experience: (json['experience'] as List<dynamic>? ?? const [])

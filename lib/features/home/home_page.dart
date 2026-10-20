@@ -146,6 +146,12 @@ class _Hero extends StatelessWidget {
                 icon: const Icon(Icons.code),
                 label: const Text('GitHub'),
               ),
+              if (profile.cv.isNotEmpty)
+                TextButton.icon(
+                  onPressed: () => _open(profile.cv),
+                  icon: const Icon(Icons.description_outlined),
+                  label: const Text('CV'),
+                ),
             ],
           ),
         ],
