@@ -40,7 +40,30 @@ jobs:
 
       # GitHub Pages no reescribe las rutas de una SPA: copiar index.html como
       # 404.html deja que go_router resuelva enlaces profundos como /proyectos.
+      # Pero el código HTTP sigue siendo 404, y los CVs apuntan a esas rutas:
+      # un validador de enlaces las marcaría como rotas. Generamos un index.html
+      # por ruta conocida para que respondan 200. Las de proyecto salen del
+      # JSON, así que una ficha nueva no se queda sin stub.
       - run: cp build/web/index.html build/web/404.html
+
+      - name: Generar rutas estáticas
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+
+          build = pathlib.Path("build/web")
+          index = (build / "index.html").read_text()
+          routes = {"/proyectos", "/sobre-mi", "/contacto"}
+          projects = json.loads(pathlib.Path("assets/raw/projects.json").read_text())
+          routes |= {f"/proyectos/{p['slug']}" for p in projects["projects"]}
+
+          for route in sorted(routes):
+              target = build / route.lstrip("/")
+              target.mkdir(parents=True, exist_ok=True)
+              (target / "index.html").write_text(index)
+
+          print(f"{len(routes)} rutas con index.html propio")
+          PY
 
       - uses: actions/upload-pages-artifact@v3
         with:
