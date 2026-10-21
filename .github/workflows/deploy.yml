@@ -49,6 +49,23 @@ jobs:
       - name: Generar rutas estáticas
         run: python3 tool/generate_routes.py
 
+      # El CV público se publica sin teléfono a propósito. Si alguien recompila
+      # el maestro con el número y copia el PDF, esto lo detecta antes de subir.
+      - name: Comprobar el CV público
+        run: |
+          sudo apt-get install -y -qq poppler-utils
+          pdftotext build/web/cv.pdf /tmp/cv.txt
+          if grep -nE '(\+34[ .-]?)?[6789][0-9]{2}[ .-]?[0-9]{3}[ .-]?[0-9]{3}' /tmp/cv.txt; then
+            echo "::error::el CV público contiene lo que parece un teléfono"
+            exit 1
+          fi
+          pages=$(pdfinfo build/web/cv.pdf | awk '/^Pages:/ {print $2}')
+          if [ "$pages" != "2" ]; then
+            echo "::error::el CV público tiene $pages páginas y debería tener 2"
+            exit 1
+          fi
+          echo "CV: $pages páginas, sin teléfono"
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
@@ -88,4 +105,5 @@ jobs:
           check "https://beeea.github.io/proyectos/media-metadata-kit/" 200
           check "https://beeea.github.io/sobre-mi/" 200
           check "https://beeea.github.io/contacto/" 200
+          check "https://beeea.github.io/cv.pdf" 200
           check "https://beeea.github.io/no-existe/" 404
