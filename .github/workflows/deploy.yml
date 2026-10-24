@@ -83,7 +83,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       # Las URLs de abajo son las que usan los CVs. Si alguna deja de responder
       # 200, el deploy falla aquí en vez de descubrirlo en una candidatura.
