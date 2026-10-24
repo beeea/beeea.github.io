@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Profile {
   const Profile({
     required this.name,
@@ -36,7 +38,7 @@ class Profile {
       tagline: json['tagline'] as String? ?? '',
       location: json['location'] as String? ?? '',
       availability: json['availability'] as String? ?? '',
-      email: json['email'] as String? ?? '',
+      email: _decodeEmail(json),
       github: json['github'] as String? ?? '',
       linkedin: json['linkedin'] as String? ?? '',
       cv: json['cv'] as String? ?? '',
@@ -46,6 +48,19 @@ class Profile {
           .map((item) => Experience.fromJson(item as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  /// El email viaja en base64 para que los recolectores de direcciones no lo
+  /// encuentren al leer el JSON en crudo. No es seguridad: es solo anti-spam.
+  static String _decodeEmail(Map<String, dynamic> json) {
+    final plain = json['email'] as String? ?? '';
+    final encoded = json['email_b64'] as String?;
+    if (encoded == null || encoded.isEmpty) return plain;
+    try {
+      return utf8.decode(base64Decode(encoded));
+    } on FormatException {
+      return plain;
+    }
   }
 }
 
