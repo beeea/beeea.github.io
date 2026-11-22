@@ -1,24 +1,102 @@
 {
   "projects": [
     {
-      "slug": "app-en-produccion-ideable",
-      "name": "App en producción · Ideable",
+      "slug": "app-musica-medio-comunicacion",
+      "name": "App de música para un medio de comunicación",
       "type": "Empresa",
       "company": "Ideable",
-      "year": "2024 – hoy",
-      "platforms": ["Android", "iOS", "Web"],
+      "year": "2024 – 2026",
+      "platforms": [
+        "Android",
+        "iOS",
+        "Tablet"
+      ],
       "featured": true,
       "anonymized": true,
-      "summary": "Maquetación pixel-perfect y evolución de una aplicación en producción para Android, iOS y Web.",
-      "description": "Formo parte del equipo que construye y mantiene una aplicación Flutter en producción. Mi foco principal es la capa de presentación: trasladar los diseños de Figma a pantallas pixel-perfect, mantener la consistencia visual entre plataformas y evolucionar la app sin romper lo que ya funciona. También mantengo módulos nativos Android en Kotlin y participo en tests y code reviews.",
+      "summary": "Responsable principal de una app de música: reproductor, vídeo, Chromecast y favoritos sincronizados.",
+      "description": "Llevé gran parte del desarrollo de esta app dentro de un equipo móvil de dos personas, desde la arquitectura en Flutter con Riverpod hasta la publicación. Reproduce audio en segundo plano y vídeo, envía el contenido a Chromecast y mantiene los favoritos sincronizados. También integré las notificaciones push y el acceso sin contraseña, y revisé la accesibilidad con lector de pantalla.",
       "highlights": [
-        "Maquetación completa y pixel-perfect desde Figma, con fidelidad visual en Android, iOS y Web.",
-        "Gestión de estado con Riverpod, con experiencia previa en BLoC/Cubit.",
-        "Mantenimiento de módulos nativos Android en Kotlin.",
-        "Flujo design-to-code apoyado en Model Context Protocol (MCP) para reducir el tiempo de maquetación.",
-        "Tests y code reviews asistidos por IA para detectar bugs y deuda técnica antes."
+        "Reproductor de audio en segundo plano, con vídeo y envío a Chromecast.",
+        "Favoritos sincronizados y notificaciones push.",
+        "Acceso sin contraseña y sesión persistente.",
+        "Tests E2E sobre los flujos de reproducción y de favoritos.",
+        "Accesibilidad revisada con lector de pantalla."
       ],
-      "stack": ["Flutter", "Dart", "Riverpod", "Kotlin", "Clean Architecture", "Figma", "MCP", "Firebase"],
+      "stack": [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "just_audio",
+        "Firebase",
+        "Sentry"
+      ],
+      "links": []
+    },
+    {
+      "slug": "teleasistencia-flutter",
+      "name": "Plataforma de teleasistencia en Flutter",
+      "type": "Empresa",
+      "company": "Ideable",
+      "year": "2024 – 2026",
+      "platforms": [
+        "Android",
+        "iOS",
+        "Tablet",
+        "Web"
+      ],
+      "featured": true,
+      "anonymized": true,
+      "summary": "Migración de Android nativo a Flutter de una plataforma desplegada para nueve organizaciones, con plugin propio.",
+      "description": "Participé en el traslado de una app de teleasistencia desde Android nativo a Flutter, escribiendo un plugin que conecta la capa nueva en Dart con el código nativo que ya existía. La misma base se despliega para nueve organizaciones, cada una con su configuración y su publicación, y en ella conviven videollamadas, alarmas, recordatorios y texto a voz.",
+      "highlights": [
+        "Migración progresiva a Flutter sin reescribir de golpe lo que ya funcionaba.",
+        "Plugin propio para exponer al código nuevo las APIs nativas existentes.",
+        "Una sola base de código con configuración por cliente para nueve organizaciones, entre ellas administraciones públicas.",
+        "Videollamadas individuales y grupales con Vonage/OpenTok y diagnóstico de incidencias de conectividad.",
+        "Login con OAuth 2.0 / OpenID Connect sobre Keycloak, JWT y biometría.",
+        "Corrección de los hallazgos de una auditoría externa de accesibilidad y revisión con lector de pantalla.",
+        "Tests unitarios, de widgets y de integración sobre los flujos críticos."
+      ],
+      "stack": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Riverpod",
+        "Vonage/OpenTok",
+        "Keycloak",
+        "OAuth 2.0"
+      ],
+      "links": []
+    },
+    {
+      "slug": "apps-de-cliente",
+      "name": "Apps de cliente: residencias y obra civil",
+      "type": "Empresa",
+      "company": "Ideable",
+      "year": "2024 – 2026",
+      "platforms": [
+        "Android",
+        "iOS"
+      ],
+      "featured": false,
+      "anonymized": true,
+      "summary": "Dos apps Flutter para clientes: comunicación entre residencias y familias, y partes de obra sin conexión.",
+      "description": "Además de los proyectos principales, mantuve y evolucioné otras apps de cliente. Una conecta a las familias con la residencia donde vive un familiar: diario, plan de atención, citas, mensajería, gráficas de constantes, documentos y facturas. La otra se usa en obra civil para registrar partes diarios por proyecto, horas y excepciones, y funciona sin conexión.",
+      "highlights": [
+        "App para familias de personas en residencias, con diario, plan de atención, citas y mensajería.",
+        "Gráficas de constantes, documentos y facturas en la misma app.",
+        "Acceso con huella y varios idiomas.",
+        "Partes de obra con trabajo sin conexión y actualización obligatoria.",
+        "BLoC y Riverpod según el proyecto, con SQLite para el trabajo offline."
+      ],
+      "stack": [
+        "Flutter",
+        "Dart",
+        "BLoC",
+        "Riverpod",
+        "SQLite",
+        "Firebase"
+      ],
       "links": []
     },
     {
@@ -27,7 +105,9 @@
       "type": "Personal",
       "company": "Proyecto propio",
       "year": "2026",
-      "platforms": ["Android"],
+      "platforms": [
+        "Android"
+      ],
       "featured": true,
       "anonymized": false,
       "summary": "Plugin Flutter que lee metadatos, portadas incrustadas y fotogramas de vídeo con el MediaMetadataRetriever nativo de Android.",
@@ -39,12 +119,20 @@
         "Diseño de API: MediaSource sellado (path o content:// URI), PlatformInterface federado y errores tipados con códigos.",
         "30 tests Dart con canal simulado, tests JVM de los helpers Kotlin y análisis estático sin issues en CI."
       ],
-      "stack": ["Flutter", "Dart", "Kotlin", "MethodChannel", "Coroutines", "MediaMetadataRetriever", "GitHub Actions"],
-            "media": {
+      "stack": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "MethodChannel",
+        "Coroutines",
+        "MediaMetadataRetriever",
+        "GitHub Actions"
+      ],
+      "media": {
         "asset": "assets/media/media-metadata-kit.gif",
         "caption": "El ejemplo leyendo un MP4: metadatos, un fotograma en el segundo 1 y tres fotogramas."
       },
-"links": []
+      "links": []
     },
     {
       "slug": "estanteria",
@@ -52,7 +140,10 @@
       "type": "Personal",
       "company": "Proyecto propio",
       "year": "2026",
-      "platforms": ["Android", "iOS"],
+      "platforms": [
+        "Android",
+        "iOS"
+      ],
       "featured": true,
       "anonymized": false,
       "summary": "App Flutter offline-first para llevar un registro de lecturas, con la base de datos local como única fuente de verdad.",
@@ -66,12 +157,54 @@
         "173 tests: reglas de dominio, base de datos en memoria, widgets con repositorio falso y navegación con go_router.",
         "Accesibilidad cuidada: objetivos táctiles de 48 dp, contraste AA verificado en tests y compatibilidad con texto ampliado al 200 %."
       ],
-      "stack": ["Flutter", "Dart", "Riverpod", "Drift", "SQLite", "go_router", "Clean Architecture", "Material 3", "GitHub Actions"],
-            "media": {
+      "stack": [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "Drift",
+        "SQLite",
+        "go_router",
+        "Clean Architecture",
+        "Material 3",
+        "GitHub Actions"
+      ],
+      "media": {
         "asset": "assets/media/estanteria.gif",
         "caption": "La app en un emulador Android 15: biblioteca, detalle con el progreso de lectura y estadísticas."
       },
-"links": []
+      "links": []
+    },
+    {
+      "slug": "precio-luz",
+      "name": "Precio Luz",
+      "type": "Personal",
+      "company": "Proyecto propio",
+      "year": "2026",
+      "status": "En desarrollo",
+      "platforms": [
+        "Android"
+      ],
+      "featured": true,
+      "anonymized": false,
+      "summary": "App Flutter para consultar el precio PVPC de la luz por horas, ver la evolución del día y recibir avisos antes de la hora más barata.",
+      "description": "Proyecto en desarrollo. Consulta el precio de la luz por horas desde la API pública de Red Eléctrica, clasifica cada tramo como barato, medio o caro y muestra una gráfica de las 24 horas con la hora más barata que queda del día. Incluye avisos locales para poner la lavadora a tiempo, un widget de Android y funcionamiento sin conexión con los últimos datos guardados. Sin backend ni cuentas: todo se calcula en el dispositivo.",
+      "highlights": [
+        "Precio actual y clasificación por umbral: barato, medio o caro.",
+        "Gráfica de las 24 horas y próxima hora barata del día.",
+        "Tres avisos locales: resumen a las 08:00, aviso diez minutos antes de la hora barata y cambio a tramo barato.",
+        "Widget de Android con el precio actual y la próxima hora barata.",
+        "Funciona sin conexión con los últimos datos cacheados.",
+        "Datos de la API oficial PVPC de Red Eléctrica, tests y CI en GitHub Actions."
+      ],
+      "stack": [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "fl_chart",
+        "Workmanager",
+        "Notificaciones locales"
+      ],
+      "links": []
     },
     {
       "slug": "covid19-valencia",
@@ -79,7 +212,9 @@
       "type": "Académico",
       "company": "Universitat de València",
       "year": "2023",
-      "platforms": ["Android"],
+      "platforms": [
+        "Android"
+      ],
       "featured": false,
       "anonymized": false,
       "summary": "App Android para consultar la incidencia de COVID-19 por municipio y registrar diagnósticos.",
@@ -91,9 +226,19 @@
         "Persistencia local con SQLite y controlador propio.",
         "UI en Material Design con menús, iconografía y formularios."
       ],
-      "stack": ["Java", "Android SDK", "SQLite", "RecyclerView", "Material Design", "ConstraintLayout"],
+      "stack": [
+        "Java",
+        "Android SDK",
+        "SQLite",
+        "RecyclerView",
+        "Material Design",
+        "ConstraintLayout"
+      ],
       "links": [
-        { "label": "Ver código", "url": "https://github.com/beeea/Covid19" }
+        {
+          "label": "Ver código",
+          "url": "https://github.com/beeea/Covid19"
+        }
       ]
     },
     {
@@ -102,7 +247,9 @@
       "type": "Académico",
       "company": "Universitat de València",
       "year": "2023",
-      "platforms": ["Android"],
+      "platforms": [
+        "Android"
+      ],
       "featured": false,
       "anonymized": false,
       "summary": "Reproducción de vídeo en Android con VideoView, controles nativos y manejo del ciclo de vida.",
@@ -115,9 +262,18 @@
         "Posición de reproducción guardada en onSaveInstanceState.",
         "Este proyecto evolucionó después al plugin media_metadata_kit (2026)."
       ],
-      "stack": ["Java", "Android SDK", "VideoView", "MediaController", "ConstraintLayout"],
+      "stack": [
+        "Java",
+        "Android SDK",
+        "VideoView",
+        "MediaController",
+        "ConstraintLayout"
+      ],
       "links": [
-        { "label": "Ver código", "url": "https://github.com/beeea/SimpleVideoView" }
+        {
+          "label": "Ver código",
+          "url": "https://github.com/beeea/SimpleVideoView"
+        }
       ]
     },
     {
@@ -126,7 +282,9 @@
       "type": "Académico",
       "company": "Universitat de València",
       "year": "2023",
-      "platforms": ["Android"],
+      "platforms": [
+        "Android"
+      ],
       "featured": false,
       "anonymized": false,
       "summary": "App de tareas con Jetpack Compose, ViewModel, LiveData y Hilt.",
@@ -138,9 +296,19 @@
         "ViewModel con mutableStateListOf y LiveData.",
         "Inyección de dependencias con Hilt."
       ],
-      "stack": ["Kotlin", "Jetpack Compose", "ViewModel", "LiveData", "Hilt", "Material"],
+      "stack": [
+        "Kotlin",
+        "Jetpack Compose",
+        "ViewModel",
+        "LiveData",
+        "Hilt",
+        "Material"
+      ],
       "links": [
-        { "label": "Ver código", "url": "https://github.com/beeea/ToDoApp" }
+        {
+          "label": "Ver código",
+          "url": "https://github.com/beeea/ToDoApp"
+        }
       ]
     },
     {
@@ -149,7 +317,9 @@
       "type": "Académico",
       "company": "Universitat de València",
       "year": "2023",
-      "platforms": ["Android"],
+      "platforms": [
+        "Android"
+      ],
       "featured": false,
       "anonymized": false,
       "summary": "Calculadora de índice de masa corporal con Kotlin y XML Views.",
@@ -161,9 +331,18 @@
         "Clasificación por categorías con color y descripción.",
         "UI en Material Design con ConstraintLayout."
       ],
-      "stack": ["Kotlin", "XML Views", "Material Components", "ConstraintLayout", "Gradle Kotlin DSL"],
+      "stack": [
+        "Kotlin",
+        "XML Views",
+        "Material Components",
+        "ConstraintLayout",
+        "Gradle Kotlin DSL"
+      ],
       "links": [
-        { "label": "Ver código", "url": "https://github.com/beeea/IMC_Calculator" }
+        {
+          "label": "Ver código",
+          "url": "https://github.com/beeea/IMC_Calculator"
+        }
       ]
     }
   ]

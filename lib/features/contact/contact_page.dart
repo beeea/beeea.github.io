@@ -4,8 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/repositories/content_repository.dart';
+import '../../shared/widgets/chunky_button.dart';
+import '../../shared/widgets/dashed_divider.dart';
+import '../../shared/widgets/hard_card.dart';
 import '../../shared/widgets/page_container.dart';
 import '../../shared/widgets/section_title.dart';
+import '../../shared/widgets/site_footer.dart';
 
 class ContactPage extends ConsumerStatefulWidget {
   const ContactPage({super.key});
@@ -72,74 +76,75 @@ class _ContactPageState extends ConsumerState<ContactPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SectionTitle(
+                  kicker: 'escríbeme',
                   title: 'Hablemos',
                   subtitle:
                       'Cuéntame la vacante o el proyecto. Te respondo en 24-48 horas.',
                 ),
                 const SizedBox(height: 32),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextFormField(
-                        controller: _nameController,
-                        decoration: const InputDecoration(
-                          labelText: 'Nombre',
-                          border: OutlineInputBorder(),
+                HardCard(
+                  padding: const EdgeInsets.all(26),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFormField(
+                          controller: _nameController,
+                          decoration: const InputDecoration(
+                            labelText: 'Nombre',
+                          ),
+                          validator: (value) =>
+                              (value == null || value.trim().isEmpty)
+                                  ? 'Escribe tu nombre'
+                                  : null,
                         ),
-                        validator: (value) =>
-                            (value == null || value.trim().isEmpty)
-                                ? 'Escribe tu nombre'
-                                : null,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: _emailController,
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
-                          border: OutlineInputBorder(),
+                        const SizedBox(height: 18),
+                        TextFormField(
+                          controller: _emailController,
+                          decoration: const InputDecoration(
+                            labelText: 'Email',
+                          ),
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Escribe tu email';
+                            }
+                            if (!value.contains('@')) return 'Email no válido';
+                            return null;
+                          },
                         ),
-                        validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Escribe tu email';
-                          }
-                          if (!value.contains('@')) return 'Email no válido';
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: _messageController,
-                        maxLines: 6,
-                        decoration: const InputDecoration(
-                          labelText: 'Mensaje',
-                          border: OutlineInputBorder(),
-                          alignLabelWithHint: true,
+                        const SizedBox(height: 18),
+                        TextFormField(
+                          controller: _messageController,
+                          maxLines: 6,
+                          decoration: const InputDecoration(
+                            labelText: 'Mensaje',
+                            alignLabelWithHint: true,
+                          ),
+                          validator: (value) =>
+                              (value == null || value.trim().length < 10)
+                                  ? 'Cuéntame algo más'
+                                  : null,
                         ),
-                        validator: (value) =>
-                            (value == null || value.trim().length < 10)
-                                ? 'Cuéntame algo más'
-                                : null,
-                      ),
-                      const SizedBox(height: 24),
-                      FilledButton.icon(
-                        onPressed: () => _send(data.email),
-                        icon: const Icon(Icons.send_outlined),
-                        label: const Text('Enviar mensaje'),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'El formulario abre tu cliente de correo con el mensaje preparado.',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
+                        const SizedBox(height: 26),
+                        ChunkyButton(
+                          label: 'Enviar mensaje',
+                          icon: Icons.send_outlined,
+                          onPressed: () => _send(data.email),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 12),
+                        Text(
+                          'El formulario abre tu cliente de correo con el mensaje preparado.',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(height: 48),
-                const Divider(),
+                const SizedBox(height: 44),
+                const DashedDivider(),
                 const SizedBox(height: 24),
                 Wrap(
                   spacing: 12,
@@ -168,6 +173,16 @@ class _ContactPageState extends ConsumerState<ContactPage> {
                       label: const Text('GitHub'),
                     ),
                   ],
+                ),
+                const SizedBox(height: 48),
+                SiteFooter(
+                  profile: data,
+                  onLink: (url) async {
+                    final uri = Uri.tryParse(url);
+                    if (uri == null) return;
+                    await launchUrl(uri,
+                        mode: LaunchMode.externalApplication);
+                  },
                 ),
               ],
             ),

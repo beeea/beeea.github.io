@@ -14,7 +14,7 @@ class BeatrizPortfolioApp extends ConsumerWidget {
     final themeMode = ref.watch(themeModeProvider);
 
     return MaterialApp.router(
-      title: 'Beatriz Barber · Mobile Developer',
+      title: 'Bea Barber · Mobile Software Engineer',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),

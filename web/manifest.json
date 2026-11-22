@@ -1,11 +1,11 @@
 {
-    "name": "Beatriz Barber · Mobile Developer",
-    "short_name": "Beatriz Barber",
+    "name": "Bea Barber · Mobile Software Engineer",
+    "short_name": "Bea Barber",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#12121A",
     "theme_color": "#6C63FF",
-    "description": "Portfolio de Beatriz Barber, Mobile Developer (Flutter & Android)",
+    "description": "Portfolio de Bea Barber, Mobile Software Engineer (Flutter & Android)",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

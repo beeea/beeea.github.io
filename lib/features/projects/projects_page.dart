@@ -20,6 +20,7 @@ class ProjectsPage extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SectionTitle(
+              kicker: '00 — archivo',
               title: 'Proyectos',
               subtitle:
                   'Una selección del trabajo en el que he participado: producto real, proyectos personales y ejercicios técnicos.',

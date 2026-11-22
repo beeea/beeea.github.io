@@ -49,6 +49,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         ],
       ),
     ],
+    observers: [appRouteObserver],
     errorBuilder: (context, state) => const NotFoundPage(),
   );
 });

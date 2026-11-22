@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import '../../data/models/project.dart';
 import 'project_card.dart';
 
+/// Rejilla de proyectos en filas de como mucho dos columnas.
+///
+/// Se construye por filas (y no con un `Wrap`) para que las tarjetas de una
+/// misma fila tengan la misma altura y el pie quede alineado. Si la última
+/// fila se queda con una sola tarjeta, esa tarjeta ocupa todo el ancho y se
+/// pinta en horizontal.
 class ProjectGrid extends StatelessWidget {
   const ProjectGrid({super.key, required this.projects, this.maxColumns = 2});
 
@@ -20,21 +26,39 @@ class ProjectGrid extends StatelessWidget {
         const spacing = 24.0;
         final fitsTwo = constraints.maxWidth >= 960 && maxColumns >= 2;
         final columns = fitsTwo ? 2 : 1;
-        final itemWidth = columns == 1
-            ? constraints.maxWidth
-            : (constraints.maxWidth - spacing) / columns;
 
-        return Wrap(
-          spacing: spacing,
-          runSpacing: spacing,
-          children: [
-            for (final project in projects)
-              SizedBox(
-                width: itemWidth,
-                child: ProjectCard(project: project),
+        final rows = <Widget>[];
+        for (var start = 0; start < projects.length; start += columns) {
+          final end = (start + columns).clamp(0, projects.length);
+          final slice = projects.sublist(start, end);
+          final lastOddRow = columns > 1 && slice.length == 1;
+
+          rows.add(
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: end < projects.length ? spacing : 0,
               ),
-          ],
-        );
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (var i = 0; i < slice.length; i++) ...[
+                      if (i > 0) const SizedBox(width: spacing),
+                      Expanded(
+                        child: ProjectCard(
+                          project: slice[i],
+                          wide: lastOddRow,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+
+        return Column(children: rows);
       },
     );
   }

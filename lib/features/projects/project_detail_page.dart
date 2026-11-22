@@ -3,10 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../core/theme/app_colors.dart';
 import '../../data/models/project.dart';
 import '../../data/repositories/content_repository.dart';
+import '../../shared/widgets/dashed_divider.dart';
+import '../../shared/widgets/hard_card.dart';
 import '../../shared/widgets/page_container.dart';
 import '../../shared/widgets/section_title.dart';
+import '../../shared/widgets/sticker.dart';
 import '../../shared/widgets/tag_chip.dart';
 
 class ProjectDetailPage extends ConsumerWidget {
@@ -48,6 +52,8 @@ class _ProjectDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final accent = palette.forProjectType(project.type);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,71 +64,81 @@ class _ProjectDetail extends StatelessWidget {
           label: const Text('Todos los proyectos'),
         ),
         const SizedBox(height: 16),
-        Row(
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            TagChip(label: project.type, highlighted: true),
-            const SizedBox(width: 8),
+            TagChip(label: project.type, color: accent),
             if (project.year.isNotEmpty) TagChip(label: project.year),
-            const SizedBox(width: 8),
-            for (final platform in project.platforms) ...[
+            if (project.status.isNotEmpty)
+              Sticker(
+                label: project.status,
+                color: palette.sun,
+                angle: 2,
+                icon: Icons.bolt,
+              ),
+            for (final platform in project.platforms)
               TagChip(label: platform),
-              const SizedBox(width: 8),
-            ],
           ],
         ),
         const SizedBox(height: 20),
         Text(
           project.name,
           style: theme.textTheme.displaySmall?.copyWith(
-            fontWeight: FontWeight.w800,
+            fontWeight: FontWeight.w700,
           ),
         ),
         const SizedBox(height: 12),
-        Text(
-          project.summary,
-          style: theme.textTheme.titleMedium?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-            height: 1.5,
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 760),
+          child: Text(
+            project.summary,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: palette.inkSoft,
+              height: 1.6,
+            ),
           ),
         ),
         if (project.anonymized) ...[
-          const SizedBox(height: 16),
-          Card(
-            color: theme.colorScheme.secondaryContainer,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.lock_outline,
-                    size: 20,
-                    color: theme.colorScheme.onSecondaryContainer,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      'Caso anonimizado por confidencialidad con el cliente. '
-                      'No se publican nombre, capturas ni métricas internas.',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSecondaryContainer,
-                      ),
+          const SizedBox(height: 20),
+          HardCard(
+            color: palette.lilac,
+            padding: const EdgeInsets.all(18),
+            child: Row(
+              children: [
+                Icon(Icons.lock_outline, size: 20, color: palette.ink),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    'Caso anonimizado por confidencialidad con el cliente. '
+                    'No se publican nombre, capturas ni métricas internas.',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: palette.ink,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
-        const SizedBox(height: 40),
+        const SizedBox(height: 44),
         if (project.media != null) ...[
           Center(
             child: Column(
               children: [
                 Container(
-                  constraints: const BoxConstraints(maxWidth: 300),
+                  constraints: const BoxConstraints(maxWidth: 320),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: theme.colorScheme.outlineVariant),
+                    border: Border.all(color: palette.line, width: 2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: palette.shadow,
+                        offset: const Offset(6, 6),
+                        blurRadius: 0,
+                      ),
+                    ],
                   ),
                   clipBehavior: Clip.antiAlias,
                   child: Image.asset(
@@ -131,35 +147,41 @@ class _ProjectDetail extends StatelessWidget {
                     semanticLabel: project.media!.caption,
                   ),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 14),
                 Text(
                   project.media!.caption,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
+                    color: palette.inkSoft,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 44),
         ],
         Text(
           project.description,
-          style: theme.textTheme.bodyLarge?.copyWith(height: 1.7),
+          style: theme.textTheme.bodyLarge?.copyWith(height: 1.75),
         ),
         const SizedBox(height: 48),
         if (project.highlights.isNotEmpty) ...[
-          const SectionTitle(title: 'Qué hice'),
-          const SizedBox(height: 16),
+          const SectionTitle(
+            kicker: '01 — el trabajo',
+            title: 'Qué hice',
+          ),
+          const SizedBox(height: 20),
           for (final highlight in project.highlights) ...[
             _Bullet(text: highlight),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
           ],
           const SizedBox(height: 40),
         ],
-        const SectionTitle(title: 'Stack'),
-        const SizedBox(height: 16),
+        const SectionTitle(
+          kicker: '02 — herramientas',
+          title: 'Stack',
+        ),
+        const SizedBox(height: 20),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -169,8 +191,8 @@ class _ProjectDetail extends StatelessWidget {
         ),
         if (project.links.isNotEmpty) ...[
           const SizedBox(height: 40),
-          const SectionTitle(title: 'Enlaces'),
-          const SizedBox(height: 16),
+          const DashedDivider(),
+          const SizedBox(height: 24),
           Wrap(
             spacing: 12,
             runSpacing: 12,

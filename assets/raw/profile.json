@@ -1,16 +1,16 @@
 {
-  "name": "Beatriz Barber",
-  "role": "Mobile Developer · Flutter & Android nativo",
+  "name": "Bea Barber",
+  "role": "Mobile Software Engineer · Flutter & Android · IA aplicada al desarrollo",
   "tagline": "De Figma a tienda: producto multiplataforma con arquitectura limpia, tests y un flujo de trabajo asistido por IA.",
   "location": "Valencia, España",
-  "availability": "Abierta a oportunidades mid/senior · Remoto o híbrido",
+  "availability": "Abierta a oportunidades · Remoto o híbrido",
   "email_b64": "YmVhdHJpemJhcmJlcm1AZ21haWwuY29t",
   "github": "https://github.com/beeea",
   "linkedin": "https://www.linkedin.com/in/beatriz-barber-94a013228",
-  "cv": "https://beeea.github.io/cv.pdf",
+  "cv": "cv.pdf",
   "about": [
     "Ingeniera Multimedia por la Universitat de València, con Matrícula de Honor en Aplicaciones para Dispositivos Móviles.",
-    "Trabajo con Flutter para Android, iOS y Web, y bajo al Android nativo en Kotlin cuando el producto lo necesita. Cuido el detalle: que la interfaz quede exactamente como el diseño y que el código siga siendo mantenible seis meses después."
+    "Trabajo con Flutter para Android, iOS y Web, y bajo al Android nativo en Kotlin cuando el producto lo necesita. Cuido el detalle: que la interfaz quede como el diseño y que el código siga siendo fácil de mantener."
   ],
   "stack": [
     "Flutter",
@@ -30,8 +30,8 @@
     {
       "company": "Ideable",
       "role": "Mobile Developer",
-      "period": "2024 – presente",
-      "description": "Apps Flutter para Android, iOS y Web, y módulos nativos Android en Kotlin. Maquetación pixel-perfect, estado con Riverpod y flujo design-to-code asistido por IA."
+      "period": "2024 – 2026",
+      "description": "Apps Flutter para Android, iOS y Web dentro de un equipo móvil de dos personas. Responsable principal de una app de música y parte de la migración de una plataforma de teleasistencia a Flutter, con maquetación desde Figma y agentes de IA para revisión y documentación."
     },
     {
       "company": "Capgemini",

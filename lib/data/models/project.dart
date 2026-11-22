@@ -13,6 +13,7 @@ class Project {
     required this.featured,
     required this.anonymized,
     required this.links,
+    this.status = '',
     this.media,
   });
 
@@ -29,6 +30,9 @@ class Project {
   final List<String> highlights;
   final List<String> stack;
   final bool featured;
+
+  /// Estado del proyecto, por ejemplo "En desarrollo". Vacío si está cerrado.
+  final String status;
 
   /// Si es true, el proyecto se muestra sin nombre de cliente ni capturas.
   final bool anonymized;
@@ -50,6 +54,7 @@ class Project {
       highlights: _stringList(json['highlights']),
       stack: _stringList(json['stack']),
       featured: json['featured'] as bool? ?? false,
+      status: json['status'] as String? ?? '',
       anonymized: json['anonymized'] as bool? ?? false,
       links: (json['links'] as List<dynamic>? ?? const [])
           .map((item) => ProjectLink.fromJson(item as Map<String, dynamic>))
