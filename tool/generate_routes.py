@@ -26,18 +26,18 @@ PROJECTS = ROOT / "assets" / "raw" / "projects.json"
 
 FIXED_PAGES = {
     "/proyectos": (
-        "Proyectos · Beatriz Barber",
+        "Proyectos · Bea Barber",
         "Apps Flutter, plugins Android y trabajos académicos: qué hace cada "
         "proyecto, con qué stack y qué límites tiene.",
     ),
     "/sobre-mi": (
-        "Sobre mí · Beatriz Barber",
+        "Sobre mí · Bea Barber",
         "Mobile Developer en Ideable y antes en Capgemini. Ingeniería Multimedia "
         "con Matrícula de Honor en la Universitat de València.",
     ),
     "/contacto": (
-        "Contacto · Beatriz Barber",
-        "Contacta con Beatriz Barber, Mobile Developer especializada en Flutter "
+        "Contacto · Bea Barber",
+        "Contacta con Bea Barber, Mobile Developer especializada en Flutter "
         "y Android nativo, en Valencia.",
     ),
 }
@@ -70,7 +70,7 @@ def pages() -> dict[str, tuple[str, str]]:
     data = json.loads(PROJECTS.read_text(encoding="utf-8"))
     for project in data["projects"]:
         routes[f"/proyectos/{project['slug']}"] = (
-            f"{project['name']} · Beatriz Barber",
+            f"{project['name']} · Bea Barber",
             project["summary"],
         )
     return routes
@@ -117,7 +117,7 @@ def main() -> None:
     not_found = set_tag(
         not_found,
         r"(<title>)[^<]*(</title>)",
-        "Página no encontrada · Beatriz Barber",
+        "Página no encontrada · Bea Barber",
     )
     (BUILD / "404.html").write_text(not_found, encoding="utf-8")
 
