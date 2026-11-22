@@ -25,13 +25,14 @@ CHIP_BORDER = (73, 69, 79)
 
 FONT_DIR = Path.home() / "Developer/flutter/bin/cache/artifacts/material_fonts"
 
-TITLE_LINE = "Beatriz Barber"
-LABEL = "MOBILE DEVELOPER · FLUTTER & ANDROID"
+TITLE_LINE = "Bea Barber"
+LABEL = "MOBILE SOFTWARE ENGINEER · FLUTTER & ANDROID"
 BODY_LINES = [
     "De Figma a tienda: apps Flutter y Android nativo",
     "con arquitectura limpia, tests y flujo asistido por IA.",
 ]
-CHIPS = ["media_metadata_kit", "Estantería", "173 tests", "Kotlin nativo"]
+# Sin métricas internas: la tarjeta se comparte públicamente con recruiters.
+CHIPS = ["media_metadata_kit", "Estantería", "Riverpod", "Kotlin nativo"]
 FOOTER = "beeea.github.io"
 
 
